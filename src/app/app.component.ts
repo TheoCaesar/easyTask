@@ -11,5 +11,9 @@ import { DUMMY_USERS } from './dummy-users';
 })
 export class AppComponent {
   title = 'first-angular-app2';
-  users = DUMMY_USERS
+  users = DUMMY_USERS;
+
+  onSelectUSER(idArg:string) {
+    console.log("Selected user with id " + idArg)
+  }
 }
