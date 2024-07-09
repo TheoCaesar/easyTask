@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, } from '@angular/core';
+import { Component, EventEmitter, Input, Output, output } from '@angular/core';
 
 @Component({
   selector: 'app-user',
@@ -12,7 +12,8 @@ export class UserComponent {
   @Input({required:true}) avatar!:string
   @Input({required:true}) name!:string
 
-  @Output() select = new EventEmitter()
+  // @Output() select = new EventEmitter()
+  select = output<string>()
   
   get randomUserPhoto(){
     return 'assets/users/'+this.avatar
