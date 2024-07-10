@@ -1,7 +1,8 @@
-import { Component, Input, input, computed } from '@angular/core';
+import { Component, Input,  } from '@angular/core';
 import { TaskComponent } from './task/task.component';
 import { dummyTasks } from '../dummy-tasks';
 import { type Task } from './task/task.model';
+import { User } from '../user/user.model';
 
 
 @Component({
@@ -12,12 +13,15 @@ import { type Task } from './task/task.model';
   styleUrl: './tasks.component.css'
 })
 export class TasksComponent {
- selectedUser = input.required<any>()
- metadata = computed(()=> 'assets/users/' + this.selectedUser().avatar)
+@Input({required:true}) selectedUser !: User
  taskList:Task[] = dummyTasks
  
  task!:Task
 
-  getSelectedUserTasks = computed(()=> this.taskList.filter(task => task.userId === this.selectedUser().id))
+  getSelectedUserTasks = ()=> this.taskList.filter(task => task.userId === this.selectedUser.id)
+
+  onTaskComplete(taskId:any){
+    this.taskList = this.taskList.filter(task=> task.id != taskId)
+  }
 
 }

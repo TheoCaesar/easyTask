@@ -1,13 +1,17 @@
 <section id="tasks">
     <header>
-        <h2>{{selectedUser().name}}'S tasks</h2>
+        <h2>{{selectedUser.name}}'s tasks</h2>
     </header>
     <menu>
         <button>Add Task</button>
     </menu>
     <ul>
         @for (task of getSelectedUserTasks(); track task.id) {
-            <li><app-task [userTask] = task/></li>        
+            <li>
+                <app-task 
+                    [userTask] = "task"
+                    (complete)= "onTaskComplete($event)"/>
+            </li>        
         }
     </ul>
 </section>
