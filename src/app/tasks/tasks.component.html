@@ -1,5 +1,13 @@
-<p>{{task().id}}</p>
-<p>{{task().name}}</p>
-<p>
-    <img [src]="metadata()" [alt]="task().avatar" width="200px">
-</p>
+<section id="tasks">
+    <header>
+        <h2>{{task().name}}'S tasks</h2>
+    </header>
+    <menu>
+        <button>Add Task</button>
+    </menu>
+    <ul>
+        <li><app-task/></li>
+        <li><app-task/></li>
+        <li><app-task/></li>
+    </ul>
+</section>
