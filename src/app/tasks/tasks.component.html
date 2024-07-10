@@ -7,7 +7,7 @@
     </menu>
     <ul>
         @for (task of getSelectedUserTasks(); track task.id) {
-            <li><app-task/></li>        
+            <li><app-task [userTask] = task/></li>        
         }
     </ul>
 </section>

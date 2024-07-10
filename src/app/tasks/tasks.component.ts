@@ -2,7 +2,7 @@ import { Component, Input, input, computed } from '@angular/core';
 import { TaskComponent } from './task/task.component';
 import { dummyTasks } from '../dummy-tasks';
 
-export type Task = {
+export interface Task {
   id:string,
   userId: string;
   title: string;
