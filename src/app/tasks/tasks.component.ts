@@ -1,4 +1,4 @@
-import { Component, input, Input } from '@angular/core';
+import { Component, input, computed } from '@angular/core';
 
 @Component({
   selector: 'app-tasks',
@@ -9,5 +9,6 @@ import { Component, input, Input } from '@angular/core';
 })
 export class TasksComponent {
  task = input<any>()
+ metadata = computed(()=> 'assets/users/' + this.task().avatar)
 
 }
