@@ -9,8 +9,9 @@
             />
         </li>}
     </ul>
-        @if (taskInfo) {
-        <app-tasks [task] = "taskInfo" />  
+        @if (userInfo) {
+        <app-tasks 
+            [selectedUser] = "userInfo" />  
         } @else {
             <p>Select any user to see their tasks</p>
         }

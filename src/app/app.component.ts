@@ -18,9 +18,11 @@ export interface user {
 export class AppComponent {
   title = 'first-angular-app2';
   users = DUMMY_USERS;
+  userInfo !: user
   taskInfo !: any ;
 
   onSelectUSER(idArg:string) {
-    this.taskInfo = this.users.find(user => user.id == idArg)!
+    this.userInfo = this.users.find(user => user.id == idArg)!
+    
   }
 }
