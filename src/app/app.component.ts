@@ -22,8 +22,5 @@ export class AppComponent {
 
   onSelectUSER(idArg:string) {
     this.taskInfo = this.users.find(user => user.id == idArg)!
-    console.log("Selected user id" + this.taskInfo)
-    console.log("Selected user id" + this.taskInfo)
-
   }
 }
