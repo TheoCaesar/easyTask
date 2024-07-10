@@ -12,4 +12,8 @@
         <ng-template #elseBlock>
             <p>Select any user to see their tasks</p>
         </ng-template>
+        <app-tasks *ngIf = "taskInfo; else elseBlock" [task] = "taskInfo" />  
+        <ng-template #elseBlock>
+            <p>Select any user to see their tasks</p>
+        </ng-template>
 </main> 
