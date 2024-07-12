@@ -25,9 +25,6 @@ export class TasksComponent {
 
   getSelectedUserTasks = ()=> this.taskService.fetchUserTasks(this.selectedUser.id)
 
-  onTaskComplete(taskId:any){
-    this.taskService.removeTask(taskId)
-  }
 
   addTask(){
     this.isNewTask = !this.isNewTask;
@@ -37,15 +34,4 @@ export class TasksComponent {
     this.isNewTask = false;
   }
 
-  addNewTask($event:NewTaskData){
-    const newTask:Task = {
-      id: new Date().getTime().toString(),
-      userId: this.selectedUser.id,
-      title: $event.title,
-      summary: $event.summary,
-      dueDate: $event.date
-    }
-    this.taskService.createTask(newTask)
-    this.isNewTask = false //close new task dialog
-  }
 }

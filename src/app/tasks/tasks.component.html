@@ -7,16 +7,15 @@
     </menu>
     @if (isNewTask) {
         <app-add-task 
+            [userId]="selectedUser.id"
             (cancel)="onCancelNewTask()"
-            (add) = "addNewTask($event)"
         />
     }
     <ul>
         @for (task of getSelectedUserTasks(); track task.id) {
             <li>
                 <app-task 
-                    [userTask] = "task"
-                    (complete)= "onTaskComplete($event)"/>
+                    [userTask] = "task"/>
             </li>        
         }
     </ul>
