@@ -6,7 +6,10 @@
         <button (click)="addTask()">Add Task</button>
     </menu>
     @if (isNewTask) {
-        <app-add-task (cancel)="onCancelNewTask()"/>
+        <app-add-task 
+            (cancel)="onCancelNewTask()"
+            (add) = "addNewTask($event)"
+        />
     }
     <ul>
         @for (task of getSelectedUserTasks(); track task.id) {

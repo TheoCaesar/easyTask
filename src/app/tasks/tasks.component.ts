@@ -1,7 +1,7 @@
 import { Component, Input,  } from '@angular/core';
 import { TaskComponent } from './task/task.component';
 import { dummyTasks } from '../dummy-tasks';
-import { type Task } from './task/task.model';
+import { type NewTaskData, type Task } from './task/task.model';
 import { User } from '../user/user.model';
 import { AddTaskComponent } from './add-task/add-task.component';
 
@@ -17,6 +17,7 @@ export class TasksComponent {
 @Input({required:true}) selectedUser !: User
   isNewTask :boolean = false;
   taskList:Task[] = dummyTasks
+  @Input() newTask !: NewTaskData
  
   task!:Task
 
@@ -32,5 +33,17 @@ export class TasksComponent {
 
   onCancelNewTask() {
     this.isNewTask = false;
+  }
+
+  addNewTask($event:NewTaskData){
+    const newTask:Task = {
+      id: new Date().getTime().toString(),
+      userId: this.selectedUser.id,
+      title: $event.title,
+      summary: $event.summary,
+      dueDate: $event.date
+    }
+    this.taskList.push(newTask);
+    this.isNewTask = false //close new task dialog
   }
 }
