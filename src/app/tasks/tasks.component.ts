@@ -4,6 +4,7 @@ import { dummyTasks } from '../dummy-tasks';
 import { type NewTaskData, type Task } from './task/task.model';
 import { User } from '../user/user.model';
 import { AddTaskComponent } from './add-task/add-task.component';
+import { TaskService } from './tasks.service';
 
 
 @Component({
@@ -14,17 +15,18 @@ import { AddTaskComponent } from './add-task/add-task.component';
   styleUrl: './tasks.component.css'
 })
 export class TasksComponent {
-@Input({required:true}) selectedUser !: User
+  @Input({required:true}) selectedUser !: User
   isNewTask :boolean = false;
   taskList:Task[] = dummyTasks
   @Input() newTask !: NewTaskData
- 
   task!:Task
+  
+  constructor(private taskService: TaskService){}
 
-  getSelectedUserTasks = ()=> this.taskList.filter(task => task.userId === this.selectedUser.id)
+  getSelectedUserTasks = ()=> this.taskService.fetchUserTasks(this.selectedUser.id)
 
   onTaskComplete(taskId:any){
-    this.taskList = this.taskList.filter(task=> task.id != taskId)
+    this.taskService.removeTask(taskId)
   }
 
   addTask(){
@@ -43,7 +45,7 @@ export class TasksComponent {
       summary: $event.summary,
       dueDate: $event.date
     }
-    this.taskList.push(newTask);
+    this.taskService.createTask(newTask)
     this.isNewTask = false //close new task dialog
   }
 }
