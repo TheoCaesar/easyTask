@@ -1,5 +1,22 @@
-<p>{{task().id}}</p>
-<p>{{task().name}}</p>
-<p>
-    <img [src]="metadata()" [alt]="task().avatar" width="200px">
-</p>
+<section id="tasks">
+    <header>
+        <h2>{{selectedUser.name}}'s tasks</h2>
+    </header>
+    <menu>
+        <button (click)="addTask()">Add Task</button>
+    </menu>
+    @if (isNewTask) {
+        <app-add-task 
+            [userId]="selectedUser.id"
+            (cancel)="onCancelNewTask()"
+        />
+    }
+    <ul>
+        @for (task of getSelectedUserTasks(); track task.id) {
+            <li>
+                <app-task 
+                    [userTask] = "task"/>
+            </li>        
+        }
+    </ul>
+</section>
